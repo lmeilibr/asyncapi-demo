@@ -1,0 +1,14 @@
+{
+  "name": "chat-app",
+  "description": "Essa aplicação é uma demonstração de um app em tempo real. A especificação também aceita markdown!  ![](https://www.shutterstock.com/image-vector/telecommunications-signal-transmitter-radio-tower-260nw-1776126035.jpg)  Você pode usar essa aplicação para enviar/receber mensagens em tempo real e receber o status de saldo da conta ",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/api/index.js"
+  },
+  "dependencies": {
+    "@asyncapi/parser": "^2.0.0-next-major.15",
+    "express": "4.18.2",
+    "express-ws": "4.0.0",
+    "node-yaml-config": "0.0.6"
+  }
+}
