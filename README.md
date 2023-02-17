@@ -12,3 +12,7 @@ npm install -g @asyncapi/generator
 ```
 ag asyncapi.yaml @asyncapi/html-template -o docs
 ```
+## Gerando o código
+```
+ag asyncapi.yaml @asyncapi/nodejs-ws-template --force-write -p server=dev 
+```
