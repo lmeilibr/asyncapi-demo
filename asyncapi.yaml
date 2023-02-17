@@ -1,0 +1,71 @@
+asyncapi: 2.0.0
+
+#
+# Informações Gerais para os usuários da Aplicacção
+#
+info:
+  title: ChatApp
+  version: '1.0.0'
+  description: |
+    Essa aplicação é uma demonstração de um app em tempo real. A especificação também aceita markdown!
+
+    ![](https://www.shutterstock.com/image-vector/telecommunications-signal-transmitter-radio-tower-260nw-1776126035.jpg)
+
+    Você pode usar essa aplicação para enviar/receber mensagens em tempo real e receber o status de saldo da conta
+#
+# Detalhes de como se conectar à aplicação
+#
+servers:
+  dev:
+    url: localhost
+    protocol: ws
+  prod:
+    url: chatappdemo.com
+    protocol: ws
+
+#
+# Detalhes sobre os canais que você pode "escutar" ou enviar mensagens
+#
+channels:
+  /chat:
+    subscribe:
+      summary: Client pode receber mensagens de chat.
+      operationId: subChatMessage
+      message:
+        $ref: '#/components/messages/chatMessage'
+    publish:
+      summary: Client pode enviar mensagens ao chat.
+      operationId: pubChatMessage
+      message:
+        $ref: '#/components/messages/chatMessage'
+  /conta/saldo:
+    subscribe:
+      summary: Client pode receber informações do saldo de créditos da sua conta.
+      operationId: subContaSaldo
+      message:
+        $ref: '#/components/messages/contaSaldo'
+
+#
+# Todos os componentes para reutilização de código
+#
+components:
+  messages:
+    chatMessage:
+      summary: Mensagem que você pode enviar ou receber no chat
+      payload:
+        type: string
+    contaSaldo:
+      summary: Mensagem que contem informação do saldo remanescente da conta
+      examples:
+        - payload:
+            idConta: 123
+            saldo: 70.45
+      payload:
+        type: object
+        properties:
+          idConta:
+            description: ID da conta.
+            type: string
+          saldo:
+            description: Valor em R$ do saldo remanescente.
+            type: string
